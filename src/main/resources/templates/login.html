@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Session Cookie Demo</title>
+    <style>
+        body { font-family: sans-serif; max-width: 400px; margin: 80px auto; padding: 0 16px; }
+        h1 { text-align: center; }
+        form { display: flex; flex-direction: column; gap: 12px; }
+        label { font-weight: bold; }
+        input[type="text"], input[type="password"] {
+            padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;
+        }
+        button { padding: 10px; background: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        button:hover { background: #1557b0; }
+        .error { color: #d32f2f; background: #fdecea; padding: 8px; border-radius: 4px; text-align: center; }
+        .logout { color: #2e7d32; background: #e8f5e9; padding: 8px; border-radius: 4px; text-align: center; }
+        .hint { color: #666; font-size: 13px; text-align: center; margin-top: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Session Cookie Demo</h1>
+
+    <div th:if="${param.error}" class="error">Invalid username or password.</div>
+    <div th:if="${param.logout}" class="logout">You have been logged out.</div>
+
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autofocus required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Log in</button>
+    </form>
+
+    <p class="hint">
+        Try <code>student</code> / <code>student</code> or <code>admin</code> / <code>admin</code>
+    </p>
+</body>
+</html>
